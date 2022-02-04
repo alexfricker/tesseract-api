@@ -12,7 +12,7 @@ class DataSourceType(models.Model):
     description = models.TextField(null=True, blank=True)
 
     class Meta:
-        db_table = 'datasource_type'
+        db_table = 'catalog_datasource_type'
 
     def __str__(self):
         return self.name
@@ -27,7 +27,7 @@ class DataSourceTypeParams(models.Model):
         return self.source_type.name + " - " + self.name
 
     class Meta:
-        db_table = 'datasource_type_params'
+        db_table = 'catalog_datasource_type_params'
         unique_together = [["source_type", "name"]]
 
 
@@ -39,7 +39,7 @@ class DataObjectType(models.Model):
     description = models.TextField(null=True, blank=True)
 
     class Meta:
-        db_table = 'dataobject_type'
+        db_table = 'catalog_dataobject_type'
         unique_together = [["data_source_type", "name"]]
 
     def __str__(self):
@@ -52,7 +52,7 @@ class ContactType(models.Model):
     description = models.TextField(null=True, blank=True)
 
     class Meta:
-        db_table = 'contact_type'
+        db_table = 'catalog_contact_type'
 
     def __str__(self):
         return self.name
@@ -120,7 +120,7 @@ class DataSourceContact(models.Model):
     contact_email = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
-        db_table = 'datasource_contact'
+        db_table = 'catalog_datasource_contact'
 
 
 class Tag(models.Model):
