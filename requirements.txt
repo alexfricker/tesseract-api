@@ -7,6 +7,6 @@ is-safe-url>=1.0
 django-rest-auth==0.9.5
 django-filter>=21.1
 djangorestframework==3.13.1
-djangorestframework-jwt>=1.11.0
+drf-jwt>=1.19.2
 kubernetes==21.7.0
 boto3>=1.20.39
