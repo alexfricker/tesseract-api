@@ -142,7 +142,7 @@ SAML2_AUTH = {
   'ENTITY_ID': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com/sso/acs/',
   'DEFAULT_NEXT_URL': '/',
   'USE_JWT': True,
-  'FRONTEND_URL': 'https://ui-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
+  #'FRONTEND_URL': 'https://ui-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
   'ATTRIBUTES_MAP': {
         'email': 'email',
         'username': 'username',
