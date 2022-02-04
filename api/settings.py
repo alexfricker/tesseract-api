@@ -1,5 +1,5 @@
 import os
-from datetime import timezone
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -152,8 +152,8 @@ SAML2_AUTH = {
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': timezone.timedelta(hours=1),
-    'JWT_REFRESH_EXPIRATION_DELTA': timezone.timedelta(hours=8),
+    'JWT_EXPIRATION_DELTA': timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(hours=8),
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
