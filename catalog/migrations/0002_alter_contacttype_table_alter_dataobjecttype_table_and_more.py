@@ -6,28 +6,28 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0001_initial'),
+        ("catalog", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelTable(
-            name='contacttype',
-            table='contact_type',
+            name="contacttype",
+            table="contact_type",
         ),
         migrations.AlterModelTable(
-            name='dataobjecttype',
-            table='dataobject_type',
+            name="dataobjecttype",
+            table="dataobject_type",
         ),
         migrations.AlterModelTable(
-            name='datasourcecontact',
-            table='datasource_contact',
+            name="datasourcecontact",
+            table="datasource_contact",
         ),
         migrations.AlterModelTable(
-            name='datasourcetype',
-            table='datasource_type',
+            name="datasourcetype",
+            table="datasource_type",
         ),
         migrations.AlterModelTable(
-            name='datasourcetypeparams',
-            table='datasource_type_params',
+            name="datasourcetypeparams",
+            table="datasource_type_params",
         ),
     ]

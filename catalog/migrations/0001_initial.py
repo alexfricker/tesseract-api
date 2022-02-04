@@ -10,149 +10,289 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
+        ("contenttypes", "0002_remove_content_type_name"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ContactType',
+            name="ContactType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("description", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='DataObject',
+            name="DataObject",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('schema_name', models.CharField(blank=True, max_length=100, null=True)),
-                ('object_name', models.CharField(max_length=400)),
-                ('full_name', models.CharField(max_length=400)),
-                ('friendly_name', models.CharField(blank=True, max_length=250, null=True)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('is_phi', models.BooleanField(default=False)),
-                ('is_sensitive', models.BooleanField(default=False)),
-                ('is_public_domain', models.BooleanField(default=False)),
-                ('scan_datetime_utc', models.DateTimeField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "schema_name",
+                    models.CharField(blank=True, max_length=100, null=True),
+                ),
+                ("object_name", models.CharField(max_length=400)),
+                ("full_name", models.CharField(max_length=400)),
+                (
+                    "friendly_name",
+                    models.CharField(blank=True, max_length=250, null=True),
+                ),
+                ("description", models.TextField(blank=True, null=True)),
+                ("is_phi", models.BooleanField(default=False)),
+                ("is_sensitive", models.BooleanField(default=False)),
+                ("is_public_domain", models.BooleanField(default=False)),
+                ("scan_datetime_utc", models.DateTimeField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='DataSource',
+            name="DataSource",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('short_name', models.CharField(max_length=20, unique=True)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('is_phi', models.BooleanField(default=False)),
-                ('is_sensitive', models.BooleanField(default=False)),
-                ('is_public_domain', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("short_name", models.CharField(max_length=20, unique=True)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("is_phi", models.BooleanField(default=False)),
+                ("is_sensitive", models.BooleanField(default=False)),
+                ("is_public_domain", models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
-            name='DataSourceType',
+            name="DataSourceType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('is_scannable', models.BooleanField(default=False)),
-                ('image_name', models.CharField(max_length=300)),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                ("is_scannable", models.BooleanField(default=False)),
+                ("image_name", models.CharField(max_length=300)),
+                ("description", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='DataSourceContact',
+            name="DataSourceContact",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('contact_name', models.CharField(max_length=200)),
-                ('contact_email', models.CharField(blank=True, max_length=200, null=True)),
-                ('contact_type', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.contacttype')),
-                ('data_source', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.datasource')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("contact_name", models.CharField(max_length=200)),
+                (
+                    "contact_email",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                (
+                    "contact_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="catalog.contacttype",
+                    ),
+                ),
+                (
+                    "data_source",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="catalog.datasource",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='datasource',
-            name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.datasourcetype'),
+            model_name="datasource",
+            name="type",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="catalog.datasourcetype"
+            ),
         ),
         migrations.CreateModel(
-            name='DataSchema',
+            name="DataSchema",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_date_utc', models.DateTimeField(default=datetime.datetime.utcnow)),
-                ('schema_version', models.IntegerField(default=1)),
-                ('schema_json', models.TextField(blank=True, null=True)),
-                ('data_object', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.dataobject')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created_date_utc",
+                    models.DateTimeField(default=datetime.datetime.utcnow),
+                ),
+                ("schema_version", models.IntegerField(default=1)),
+                ("schema_json", models.TextField(blank=True, null=True)),
+                (
+                    "data_object",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="catalog.dataobject",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='DataObjectType',
+            name="DataObjectType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('is_scannable', models.BooleanField(default=False)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('data_source_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.datasourcetype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("is_scannable", models.BooleanField(default=False)),
+                ("description", models.TextField(blank=True, null=True)),
+                (
+                    "data_source_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="catalog.datasourcetype",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('data_source_type', 'name')},
+                "unique_together": {("data_source_type", "name")},
             },
         ),
         migrations.AddField(
-            model_name='dataobject',
-            name='data_source',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.datasource'),
+            model_name="dataobject",
+            name="data_source",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="catalog.datasource"
+            ),
         ),
         migrations.AddField(
-            model_name='dataobject',
-            name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='catalog.dataobjecttype'),
+            model_name="dataobject",
+            name="type",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="catalog.dataobjecttype"
+            ),
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('object_id', models.IntegerField()),
-                ('tag', models.CharField(max_length=25)),
-                ('content_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contenttypes.contenttype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("object_id", models.IntegerField()),
+                ("tag", models.CharField(max_length=25)),
+                (
+                    "content_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="contenttypes.contenttype",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('content_type', 'object_id', 'tag')},
+                "unique_together": {("content_type", "object_id", "tag")},
             },
         ),
         migrations.CreateModel(
-            name='DataSourceTypeParams',
+            name="DataSourceTypeParams",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('required', models.BooleanField(default=True)),
-                ('source_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.datasourcetype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("required", models.BooleanField(default=True)),
+                (
+                    "source_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="catalog.datasourcetype",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('source_type', 'name')},
+                "unique_together": {("source_type", "name")},
             },
         ),
         migrations.AlterUniqueTogether(
-            name='dataobject',
-            unique_together={('data_source', 'full_name')},
+            name="dataobject",
+            unique_together={("data_source", "full_name")},
         ),
         migrations.CreateModel(
-            name='DataField',
+            name="DataField",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('field_name', models.CharField(max_length=800)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('orig_data_type', models.CharField(max_length=200)),
-                ('univ_data_type', models.CharField(max_length=200)),
-                ('max_length', models.IntegerField(blank=True, null=True)),
-                ('scale', models.IntegerField(blank=True, null=True)),
-                ('precision', models.IntegerField(blank=True, null=True)),
-                ('is_nullable', models.BooleanField(default=True)),
-                ('is_calculated', models.BooleanField(default=False)),
-                ('is_primary_key', models.BooleanField(default=False)),
-                ('data_schema', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.dataschema')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("field_name", models.CharField(max_length=800)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("orig_data_type", models.CharField(max_length=200)),
+                ("univ_data_type", models.CharField(max_length=200)),
+                ("max_length", models.IntegerField(blank=True, null=True)),
+                ("scale", models.IntegerField(blank=True, null=True)),
+                ("precision", models.IntegerField(blank=True, null=True)),
+                ("is_nullable", models.BooleanField(default=True)),
+                ("is_calculated", models.BooleanField(default=False)),
+                ("is_primary_key", models.BooleanField(default=False)),
+                (
+                    "data_schema",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="catalog.dataschema",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('data_schema', 'field_name')},
+                "unique_together": {("data_schema", "field_name")},
             },
         ),
     ]

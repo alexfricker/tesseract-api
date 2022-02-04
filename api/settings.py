@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e%i4(=g7rm(g1i$(f4slt+ph1y2qypp82@+$1+7d7%#y4cb^m6'
+SECRET_KEY = "django-insecure-e%i4(=g7rm(g1i$(f4slt+ph1y2qypp82@+$1+7d7%#y4cb^m6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,47 +28,47 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_saml2_auth',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django_saml2_auth",
     "rest_framework",
     "rest_framework_jwt",
     "catalog",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'api.urls'
+ROOT_URLCONF = "api.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'api.wsgi.application'
+WSGI_APPLICATION = "api.wsgi.application"
 
 
 # Database
@@ -91,16 +91,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -108,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -120,43 +120,43 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
 }
 
 SAML2_AUTH = {
-  'METADATA_AUTO_CONF_URL': 'https://myriad.okta.com/app/exkfog1voqRDW6pop357/sso/saml/metadata',
-  'ASSERTION_URL': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
-  'ENTITY_ID': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com/sso/acs/',
-  #'DEFAULT_NEXT_URL': '/',
-  'USE_JWT': True,
-  'FRONTEND_URL': 'https://ui-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
-  'ATTRIBUTES_MAP': {
-        'email': 'email',
-        'username': 'username',
-        'first_name': 'first_name',
-        'last_name': 'last_name',
-    }
+    "METADATA_AUTO_CONF_URL": "https://myriad.okta.com/app/exkfog1voqRDW6pop357/sso/saml/metadata",
+    "ASSERTION_URL": "https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com",
+    "ENTITY_ID": "https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com/sso/acs/",
+    #'DEFAULT_NEXT_URL': '/',
+    "USE_JWT": True,
+    "FRONTEND_URL": "https://ui-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com",
+    "ATTRIBUTES_MAP": {
+        "email": "email",
+        "username": "username",
+        "first_name": "first_name",
+        "last_name": "last_name",
+    },
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': timedelta(hours=1),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(hours=8),
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+    "JWT_EXPIRATION_DELTA": timedelta(hours=1),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(hours=8),
+    "JWT_ALLOW_REFRESH": True,
+    "JWT_AUTH_HEADER_PREFIX": "Bearer",
 }
