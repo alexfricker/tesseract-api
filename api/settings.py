@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_saml2_auth',
     "rest_framework",
     "catalog",
 ]
@@ -128,4 +129,19 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+}
+
+SAML2_AUTH = {
+  'METADATA_AUTO_CONF_URL': 'https://myriad.okta.com/app/exkfog1voqRDW6pop357/sso/saml/metadata',
+  'ASSERTION_URL': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
+  'ENTITY_ID': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com/sso/acs/',
+  'DEFAULT_NEXT_URL': '/',
+  'USE_JWT': True,
+  'FRONTEND_URL': 'https://ui-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
+  'ATTRIBUTES_MAP': {
+        'email': 'email',
+        'username': 'username',
+        'first_name': 'first_name',
+        'last_name': 'last_name',
+    }
 }

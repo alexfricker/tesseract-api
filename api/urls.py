@@ -1,6 +1,8 @@
+from django.conf.urls import url
 from django.urls import include, path
 from rest_framework import routers
 from catalog import views as catalog
+from django_saml2_auth import views as sso
 
 router = routers.DefaultRouter()
 router.register(r"contact-types", catalog.ContactTypeViewSet)
@@ -13,5 +15,10 @@ router.register(r"data-source-types", catalog.DataSourceTypeViewSet)
 router.register(r"data-source-types-params", catalog.DataSourceTypeParamsViewSet)
 
 urlpatterns = [
+    url(r'^sso/', include('django_saml2_auth.urls')),
     path("", include(router.urls)),
+
+    # Overrides django's default and admin login
+    path('accounts/login/', sso.views.signin),
+    path('admin/login/', sso.views.signin),
 ]
