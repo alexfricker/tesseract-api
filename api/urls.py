@@ -20,9 +20,9 @@ urlpatterns = [
     path("sso/", include("django_saml2_auth.urls")),
     re_path(r'^jwt_refresh', refresh_jwt_token),
     path("", include(router.urls)),
+    path("admin/", admin.site.urls),
 
     # Overrides django's default and admin login
     path('accounts/login/', sso.signin),
     path('admin/login/', sso.signin),
-    path("admin/", admin.site.urls),
 ]

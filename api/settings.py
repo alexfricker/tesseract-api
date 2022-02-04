@@ -140,7 +140,7 @@ SAML2_AUTH = {
   'METADATA_AUTO_CONF_URL': 'https://myriad.okta.com/app/exkfog1voqRDW6pop357/sso/saml/metadata',
   'ASSERTION_URL': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
   'ENTITY_ID': 'https://api-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com/sso/acs/',
-  'DEFAULT_NEXT_URL': '/',
+  #'DEFAULT_NEXT_URL': '/',
   'USE_JWT': True,
   #'FRONTEND_URL': 'https://ui-dev-mde.apps.tst.openshift-stg-ext.aws.myriad.com',
   'ATTRIBUTES_MAP': {
