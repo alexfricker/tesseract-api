@@ -22,7 +22,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://core-mde-poc.apps.tst.openshift-stg-ext.aws.myriad.com:80",
     "https://core-mde-poc.apps.tst.openshift-stg-ext.aws.myriad.com:443",
-    "https://*.myriad.com"
+    "https://*.myriad.com",
 ]
 
 
