@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from django.urls import include, path
 from rest_framework import routers
+from rest_framework_jwt.views import refresh_jwt_token
 from catalog import views as catalog
 from django_saml2_auth import views as sso
 
@@ -16,6 +17,7 @@ router.register(r"data-source-types-params", catalog.DataSourceTypeParamsViewSet
 
 urlpatterns = [
     url(r'^sso/', include('django_saml2_auth.urls')),
+    url(r'^jwt_refresh', refresh_jwt_token),
     path("", include(router.urls)),
 
     # Overrides django's default and admin login

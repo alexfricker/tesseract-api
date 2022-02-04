@@ -1,4 +1,5 @@
 import os
+from datetime import timezone
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_saml2_auth',
     "rest_framework",
+    "rest_framework_jwt",
     "catalog",
 ]
 
@@ -129,6 +131,9 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ]
 }
 
 SAML2_AUTH = {
@@ -144,4 +149,11 @@ SAML2_AUTH = {
         'first_name': 'first_name',
         'last_name': 'last_name',
     }
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': timezone.timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timezone.timedelta(hours=8),
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
