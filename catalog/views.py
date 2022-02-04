@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, permissions
 from . import models
 from . import serializers
 
@@ -32,7 +32,7 @@ class DataSchemaViewSet(viewsets.ModelViewSet):
 class DataSourceViewSet(viewsets.ModelViewSet):
     queryset = models.DataSource.objects.all()
     serializer_class = serializers.DataSourceSerializer
-    # TODO permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
 class DataSourceTypeViewSet(viewsets.ModelViewSet):
     queryset = models.DataSourceType.objects.all()
