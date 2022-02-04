@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from rest_framework import viewsets, filters, permissions
+from django.contrib.auth.models import User
+from django_saml2_auth import views
 from . import models
 from . import serializers
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 class ContactTypeViewSet(viewsets.ModelViewSet):
     queryset = models.ContactType.objects.all()

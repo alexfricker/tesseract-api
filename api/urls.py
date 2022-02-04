@@ -7,6 +7,7 @@ from catalog import views as catalog
 from django_saml2_auth import views as sso
 
 router = routers.DefaultRouter()
+router.register(r"user", catalog.ContactTypeViewSet)
 router.register(r"contact-types", catalog.ContactTypeViewSet)
 router.register(r"data-fields", catalog.DataFieldViewSet)
 router.register(r"data-objects", catalog.DataObjectViewSet)
