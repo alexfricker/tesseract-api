@@ -7,6 +7,10 @@ from . import models
 from . import serializers
 
 
+def SwaggerUI(request): #TODO: move this into UI
+    return render(request, "catalog/swagger-ui.html")
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("id")
     serializer_class = serializers.UserSerializer
