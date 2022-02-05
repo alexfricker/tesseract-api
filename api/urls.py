@@ -1,3 +1,4 @@
+import os
 from django.urls import include, path, re_path
 from django.contrib import admin
 from django.views.generic import TemplateView
@@ -29,15 +30,24 @@ router.register(r"pipeline/step-execution", pipeline.StepExecutionViewSet)
 router.register(r"pipeline/task", pipeline.TaskViewSet)
 router.register(r"pipeline/task-execution", pipeline.TaskExecutionViewSet)
 
-urlpatterns = [
+
+def auth_url_generator():
+    """ managing auth for dev scenarios """
+    if os.getenv("APP_AUTH_DISABLED","false").lower() == "true":
+        # use basic auth
+        return []
+    return [
+        # SAML2 authentication
+        path("sso/", include("django_saml2_auth.urls")),
+        path("accounts/login/", sso.signin),
+        path("admin/login/", sso.signin),
+        re_path(r"^jwt_refresh", refresh_jwt_token),
+    ]
+
+urlpatterns = auth_url_generator()
+urlpatterns.extend([
     # api endpoints
     path("", include(router.urls)),
-
-    # authentication
-    path("sso/", include("django_saml2_auth.urls")),
-    path("accounts/login/", sso.signin),
-    path("admin/login/", sso.signin),
-    re_path(r"^jwt_refresh", refresh_jwt_token),
 
     # admin site (django generated)
     path("admin/", admin.site.urls),
@@ -51,4 +61,4 @@ urlpatterns = [
 
     # # Swagger UI
     path("swagger/", catalog.SwaggerUI, name="swagger-ui"),
-]
+])
