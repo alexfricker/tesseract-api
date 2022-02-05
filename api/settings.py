@@ -10,18 +10,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# TODO: SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 SECRET_KEY = "django-insecure-e%i4(=g7rm(g1i$(f4slt+ph1y2qypp82@+$1+7d7%#y4cb^m6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# TODO: DEBUG = os.getenv("DJANGO_DEBUG")
 DEBUG = True
 
+# TODO: [127.0.0.1, 10.0.0.0/8, etc]
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "http://core-mde-poc.apps.tst.openshift-stg-ext.aws.myriad.com:80",
-    "https://core-mde-poc.apps.tst.openshift-stg-ext.aws.myriad.com:443",
+    "http://*.myriad.com",
     "https://*.myriad.com",
 ]
 
@@ -136,9 +138,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
     ],
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
+    # "DEFAULT_PERMISSION_CLASSES": [
+    #     "rest_framework.permissions.IsAuthenticated",
+    # ],
 }
 
 SAML2_AUTH = {

@@ -32,8 +32,8 @@ urlpatterns = [
     re_path(r"^jwt_refresh", refresh_jwt_token),
     re_path(r"^api-token-verify/", verify_jwt_token),
     path("", include(router.urls)),
-    path("admin/", admin.site.urls),
     # Overrides django's default and admin login
     path("accounts/login/", sso.signin),
     path("admin/login/", sso.signin),
+    path("admin/", admin.site.urls),
 ]

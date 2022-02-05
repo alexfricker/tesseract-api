@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  pgdb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=africker
+      - POSTGRES_PASSWORD=secretpassword
+  api:
+    build: .
+    ports:
+      - "80:8000"
+    depends_on:
+      - pgdb
+    volumes:
+      - '.:/app'
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=africker
+      - POSTGRES_PASSWORD=secretpassword
+      - POSTGRES_SERVER=pgdb
