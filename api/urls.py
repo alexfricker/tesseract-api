@@ -1,6 +1,8 @@
 from django.urls import include, path, re_path
 from django.contrib import admin
+from django.views.generic import TemplateView
 from rest_framework import routers
+from rest_framework.schemas import get_schema_view
 from rest_framework_jwt.views import refresh_jwt_token
 from catalog import views as catalog
 from pipeline import views as pipeline
@@ -39,4 +41,17 @@ urlpatterns = [
 
     # admin site (django generated)
     path("admin/", admin.site.urls),
+
+    # OpenAPI schema view
+    path('schema', get_schema_view(
+        title="MDE Tesseract API",
+        description="Data Integration Platform API",
+        version="1.0.0"
+    ), name='openapi-schema'),
+
+    # # Swagger UI
+    # path('swagger/', TemplateView.as_view(
+    #     template_name='swagger-ui.html',
+    #     extra_context={'schema_url':'openapi-schema'}
+    # ), name='swagger-ui'),
 ]
