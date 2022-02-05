@@ -21,3 +21,4 @@ services:
       - POSTGRES_USER=africker
       - POSTGRES_PASSWORD=secretpassword
       - POSTGRES_SERVER=pgdb
+      - APP_AUTH_DISABLED=true

@@ -1,7 +1,7 @@
 from django.urls import include, path, re_path
 from django.contrib import admin
 from rest_framework import routers
-from rest_framework_jwt.views import refresh_jwt_token, verify_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
 from catalog import views as catalog
 from pipeline import views as pipeline
 from django_saml2_auth import views as sso
@@ -28,12 +28,15 @@ router.register(r"pipeline/task", pipeline.TaskViewSet)
 router.register(r"pipeline/task-execution", pipeline.TaskExecutionViewSet)
 
 urlpatterns = [
-    path("sso/", include("django_saml2_auth.urls")),
-    re_path(r"^jwt_refresh", refresh_jwt_token),
-    re_path(r"^api-token-verify/", verify_jwt_token),
+    # api endpoints
     path("", include(router.urls)),
-    # Overrides django's default and admin login
+
+    # authentication
+    path("sso/", include("django_saml2_auth.urls")),
     path("accounts/login/", sso.signin),
     path("admin/login/", sso.signin),
+    re_path(r"^jwt_refresh", refresh_jwt_token),
+
+    # admin site (django generated)
     path("admin/", admin.site.urls),
 ]
