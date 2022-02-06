@@ -49,6 +49,9 @@ urlpatterns.extend([
     # api endpoints
     path("", include(router.urls)),
 
+    # search endpoint
+    path("search/", catalog.Search, name="site-search"),
+
     # admin site (django generated)
     path("admin/", admin.site.urls),
 
@@ -59,6 +62,6 @@ urlpatterns.extend([
         version="1.0.0"
     ), name='openapi-schema'),
 
-    # # Swagger UI
+    # Swagger UI
     path("swagger/", catalog.SwaggerUI, name="swagger-ui"),
 ])

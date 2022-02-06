@@ -1,17 +1,37 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import viewsets, filters, permissions
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, renderer_classes
 from django.contrib.auth.models import User
 from django_saml2_auth import views
 from . import models
+from pipeline import models as pipeline
 from . import serializers
+from pipeline import serializers as p_serializers
 
 
 def SwaggerUI(request): #TODO: move this into UI
     return render(request, "catalog/swagger-ui.html")
 
+@api_view(('GET',))
+def Search(request): # TODO: move this somewhere else and make better (use a search engine)
+    query = request.GET.get("query", None)
+    data_srcs_query = models.DataSource.objects.all()
+    data_objs_query = models.DataObject.objects.all()
+    jobs_query = pipeline.Job.objects.all()
 
-class UserViewSet(viewsets.ModelViewSet):
+    if query:
+         data_srcs_query = data_srcs_query.filter(name__icontains=query).all()[:5]
+         data_objs_query = data_objs_query.filter(full_name__icontains=query).all()[:5]
+         jobs_query = jobs_query.filter(name__icontains=query).all()[:5]
+
+    return Response({"data_srcs": serializers.DataSourceSerializer(data_srcs_query, many=True).data,
+        "data_objs": serializers.DataObjectSerializer(data_objs_query, many=True).data,
+        "jobs": p_serializers.JobSerializer(jobs_query, many=True).data})
+
+
+class UserViewSet(viewsets.ModelViewSet): # TODO: move this somewhere else
     queryset = User.objects.all().order_by("id")
     serializer_class = serializers.UserSerializer
 
