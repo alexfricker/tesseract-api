@@ -54,7 +54,7 @@ class DataSourceTypeSerializer(serializers.ModelSerializer):
 
 
 class DataSourceSerializer(serializers.ModelSerializer):
-    type = serializers.DataSourceTypeSerializer()
+    type = DataSourceTypeSerializer()
 
     # def get_type(self, obj):
     #     return obj.type.name
