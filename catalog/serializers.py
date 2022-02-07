@@ -48,10 +48,10 @@ class DataSchemaSerializer(serializers.ModelSerializer):
 
 
 class DataSourceSerializer(serializers.ModelSerializer):
-    type = serializers.SerializerMethodField()
+    # type = serializers.SerializerMethodField()
 
-    def get_type(self, obj):
-        return obj.type.name
+    # def get_type(self, obj):
+    #     return obj.type.name
 
     class Meta:
         model = models.DataSource
