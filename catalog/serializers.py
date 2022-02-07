@@ -47,20 +47,20 @@ class DataSchemaSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class DataSourceTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DataSourceType
+        fields = "__all__"
+
+
 class DataSourceSerializer(serializers.ModelSerializer):
-    # type = serializers.SerializerMethodField()
+    type = serializers.DataSourceTypeSerializer()
 
     # def get_type(self, obj):
     #     return obj.type.name
 
     class Meta:
         model = models.DataSource
-        fields = "__all__"
-
-
-class DataSourceTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.DataSourceType
         fields = "__all__"
 
 
