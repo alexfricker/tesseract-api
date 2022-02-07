@@ -22,3 +22,11 @@ services:
       - POSTGRES_PASSWORD=secretpassword
       - POSTGRES_SERVER=pgdb
       - APP_AUTH_DISABLED=true
+  ui:
+    build: ../ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - '../ui-sand:/app'
